@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export class MongoConnect {
     static connect(uri: string) {
-        mongoose.connect(uri)
+        mongoose.connect(uri).catch(err => console.log(err))
         this.printConnect();
     }
     static printConnect() {

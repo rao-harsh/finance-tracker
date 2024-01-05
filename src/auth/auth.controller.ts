@@ -1,9 +1,7 @@
 import { Controller, Post, Body, NotFoundException } from '@nestjs/common';
-import { SigninDto } from './dtos/signin.dto';
 import { AuthService } from './auth.service';
-import { SignupDto } from './dtos/signup.dtos';
 
-@Controller('api/v1/auth')
+@Controller('auth')
 export class AuthController {
 
     constructor(public authService: AuthService) {
@@ -11,15 +9,15 @@ export class AuthController {
     }
 
     @Post("/signin")
-    async signin(req: Request, res: Response, @Body() body: SigninDto) {
+    async signin(req: Request, res: Response, @Body() body: any) {
         console.log(body)
-        return await this.authService.signIn(body.email,body.password)
+        return await this.authService.signIn(body.email, body.password)
     }
 
     @Post("/signup")
-    async signup(req: Request, res: Response, @Body() body: SignupDto) {
+    async signup(req: Request, res: Response, @Body() body: any) {
         console.log(body)
-        return await this.authService.create(body)
+        return await this.authService.signUp(body)
     }
 
 }
